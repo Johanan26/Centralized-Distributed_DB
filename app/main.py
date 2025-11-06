@@ -12,6 +12,10 @@ ProjectCreate, ProjectRead,
 ProjectReadWithOwner, ProjectCreateForUser
 )
 
+#This code is used to demonstrate how to hook the fast API backend to SQLite 
+#it follows the CRUD endpoints for project, course and users allowing the information to get stored in SQLite
+#It has the models.py file for the databases tables, a schemas.py file to show the parameters and a main.py file where the functions are made and used.
+
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
 
@@ -74,7 +78,7 @@ def create_project(project: ProjectCreate, db: Session = Depends(get_db)):
     # Convert ORM -> Pydantic explicitly (sometimes fixes silent 500s)
     return ProjectRead.model_validate(proj)
 
-
+#Put to update the projects info
 @app.put("/api/projects/{project_id}", response_model=ProjectRead)
 def update_project(project_id: int, updated: ProjectCreate, db: Session = Depends(get_db)):
     project = db.query(ProjectDB).filter(ProjectDB.project_id == project_id).first()
@@ -93,7 +97,7 @@ def update_project(project_id: int, updated: ProjectCreate, db: Session = Depend
         raise HTTPException(status_code=409, detail="Project already exists or owner invalid")
     return project
 
-
+#patch to update the projects information for only 1 variable
 @app.patch("/api/projects/{project_id}", response_model=ProjectRead)
 def patch_project(project_id: int, updated: ProjectUpdate, db: Session = Depends(get_db)):
     project = db.query(ProjectDB).filter(ProjectDB.project_id == project_id).first()

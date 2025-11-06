@@ -19,6 +19,7 @@ class UserCreate(BaseModel):
     age: AgeInt
     student_id: StudentIdStr
 
+#Added as needed to make patch endpoint work 
 class UserUpdate(BaseModel):
     name: Optional[NameStr] = None
     email: Optional[EmailStr] = None
@@ -56,6 +57,7 @@ class ProjectCreateForUser(BaseModel):
     name: ProjectNameStr
     description: Optional[DescStr] = None
 
+#Added as needed to make patch endpoint work 
 class ProjectUpdate(BaseModel):
     name: Optional[ProjectNameStr] = None
     description: Optional[DescStr] = None
