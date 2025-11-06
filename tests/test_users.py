@@ -39,7 +39,7 @@ def test_delete_then_404(client):
  # pydantic validation error
  assert r2.status_code == 404 
  
- #Testing Put(Update)
+ #Testing Put(Update), creates a users and 
 def test_update_then_404(client):
  client.post("/api/users", json=user_payload(uid=1, name="Sean", email="sm@atu.ie", age=22, sid="S1234567"))
  r1 = client.put("/api/users/1", json=user_payload())
