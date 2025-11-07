@@ -2,6 +2,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import String, Integer, ForeignKey
 from typing import Optional 
 
+#User and Project database columns being mapped
 
 class Base(DeclarativeBase):
     pass
